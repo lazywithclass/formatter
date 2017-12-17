@@ -1,7 +1,8 @@
 #lang racket
 
-(require racket/trace)
+(provide read-chars)
 (provide format)
+(provide print-as-string)
 
 ;; TODO make it work for both formatted
 ;; text and non formatted text, as right now
@@ -26,10 +27,5 @@
      (cons #\newline (format (rest a) b #t)))
     (else (cons (car b) (format (rest a) (rest b) newline-seen)))))
 
-;; (trace format)
-
-;; (format '(#\2 #\newline) '(#\newline) #f)
-
-;; (let ([a (read-chars #f)]
-;;       [b (read-chars #f)])
-;;   (format a b #f))
+(define (print-as-string lat)
+  (void (map display lat)))
