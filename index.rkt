@@ -5,10 +5,6 @@
 (provide print-as-string)
 (provide clean-whitespace)
 
-;; TODO make it work for both formatted
-;; text and non formatted text, as right now
-;; it always ignores spaces (it should ignore
-;; spaces only for non formatted texts)
 (define (read-chars newline-seen)
   (let ([c (read-char)])
     (cond
