@@ -17,9 +17,23 @@
 
 (test-case
     "a is on multiple lines"
+  ;;;; a:
   ;; 1
   ;;  2
   ;;   3
   (let ([a '(#\1 #\newline #\space #\2 #\newline #\space #\space #\3 #\newline)]
         [b '(#\4 #\5 #\6 #\newline)])
+    (check-equal? (format a b #f) '(#\4 #\newline #\space #\5 #\newline #\space #\space #\6 #\newline))))
+
+(test-case
+    "b is formatted in a wrong fashion"
+  ;;;; a:
+  ;; 1
+  ;;  2
+  ;;   3
+  ;;;; b:
+  ;; 4 5
+  ;;  6
+  (let ([a '(#\1 #\newline #\space #\2 #\newline #\space #\space #\3 #\newline)]
+        [b '(#\4 #\space #\5 #\newline #\space #\6 #\newline)])
     (check-equal? (format a b #f) '(#\4 #\newline #\space #\5 #\newline #\space #\space #\6 #\newline))))

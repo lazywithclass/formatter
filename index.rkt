@@ -3,6 +3,7 @@
 (provide read-chars)
 (provide format)
 (provide print-as-string)
+(provide clean-whitespace)
 
 ;; TODO make it work for both formatted
 ;; text and non formatted text, as right now
@@ -17,15 +18,24 @@
       (else (cons c (read-chars #f))))))
 
 (define (format a b newline-seen)
+  (set! b (clean-whitespace b))
   (cond
-    ((equal? a '()) '())
-    ((equal? b '()) '())
-    ((equal? (car a) '()) b)
+    ((null? a) '())
+    ((null? b) '())
+    ((null? a) b)
     ((equal? (car a) #\space)
      (cons #\space (format (rest a) b newline-seen)))
     ((equal? (car a) #\newline)
      (cons #\newline (format (rest a) b #t)))
     (else (cons (car b) (format (rest a) (rest b) newline-seen)))))
+
+(define (clean-whitespace lat)
+  (cond
+    ;; put newline back if we're done
+    ((null? lat) '(#\newline))
+    ((equal? (car lat) #\space) (clean-whitespace (cdr lat)))
+    ((equal? (car lat) #\newline) (clean-whitespace (cdr lat)))
+    (else (cons (car lat) (clean-whitespace (cdr lat))))))
 
 (define (print-as-string lat)
   (void (map display lat)))
