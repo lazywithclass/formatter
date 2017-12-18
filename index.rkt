@@ -9,16 +9,14 @@
   (let ([c (read-char)])
     (cond
       ((and (equal? c #\newline) newline-seen) '())
-      ((equal? c #\newline) (cons c (read-chars #t)))
-      ((equal? c " ") (read-chars newline-seen))
-      (else (cons c (read-chars #f))))))
+      (else (cons c (read-chars (equal? c #\newline)))))))
 
 (define (format a b newline-seen)
+  ;; bleah, clearly there's a better way
   (set! b (clean-whitespace b))
   (cond
-    ((null? a) '())
-    ((null? b) '())
     ((null? a) b)
+    ((null? b) '())
     ((equal? (car a) #\space)
      (cons #\space (format (rest a) b newline-seen)))
     ((equal? (car a) #\newline)
