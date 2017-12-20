@@ -2,6 +2,10 @@
 
 A tool that takes two input strings, formats the second as the first.
 
+For `formatter` to work the tokens that one wants to format have to have
+the same length, otherwise the tool will produce a result different from
+what is expected.
+
 ### Configure
 
 Install your [Racket](https://download.racket-lang.org/) package.
