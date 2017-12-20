@@ -21,8 +21,6 @@
       (else (cons c (read-chars (equal? c #\newline)))))))
 
 (define (format a b newline-seen)
-  ;; bleah, clearly there's a better way
-  (set! b (clean-whitespace b))
   (cond
     ((null? a) b)
     ((null? b) '())
