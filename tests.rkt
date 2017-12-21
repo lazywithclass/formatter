@@ -35,7 +35,7 @@
   ;; 4 5
   ;;  6
   (let ([a '(#\1 #\newline #\space #\2 #\newline #\space #\space #\3 #\newline)]
-        [b '(#\4 #\space #\5 #\newline #\space #\6 #\newline)])
+        [b (clean-whitespace '(#\4 #\space #\5 #\newline #\space #\6 #\newline))])
     (check-equal? (format a b #f) '(#\4 #\newline #\space #\5 #\newline #\space #\space #\6 #\newline #\newline))))
 
 (test-case
