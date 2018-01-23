@@ -2,9 +2,8 @@
 
 A tool that takes two input strings, formats the second as the first.
 
-For `formatter` to work the tokens that one wants to format have to have
-the same length, otherwise the tool will produce a result different from
-what is expected.
+If the length of the second is greater then all excess characters are printed one after the other once the
+threshold is crossed.
 
 ### Configure
 
